@@ -94,3 +94,17 @@ FaceVerse-AI/
 ## Author
 
 Developed as a student project using Python, Flask, OpenCV and SQLite.
+
+## Project Screenshots
+
+### Homepage
+![FaceVerse AI Homepage](screenshots/homepage.png)
+
+### User Registration
+![Registration Page](screenshots/register-page.png)
+
+### Face Recognition Login
+![Face Login](screenshots/face-login.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
