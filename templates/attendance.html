@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance | FaceVerse AI</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <div class="dashboard-header">
+        <h1>📊 Attendance Records</h1>
+        <p>Full check-in history</p>
+    </div>
+
+    <div class="hero-buttons" style="margin-bottom:10px;">
+        <a href="/" class="ai-btn secondary">⬅ Back to Home</a>
+        <a href="/admin" class="ai-btn secondary">🛠 Admin Panel</a>
+    </div>
+
+    {% set ns = namespace(present=0, absent=0) %}
+    {% for r in records %}
+        {% if r[5]|lower == 'present' %}
+            {% set ns.present = ns.present + 1 %}
+        {% else %}
+            {% set ns.absent = ns.absent + 1 %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>{{ records|length }}</h3>
+            <p>Total Records</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <h3>{{ ns.present }}</h3>
+            <p>Present</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">❌</div>
+            <h3>{{ ns.absent }}</h3>
+            <p>Absent</p>
+        </div>
+
+    </div>
+<form method="GET" action="/attendance" style="margin-bottom:20px;">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Name or User ID"
+        value="{{ search }}"
+    >
+
+    <input
+        type="text"
+        name="date"
+        placeholder="YYYY-MM-DD"
+        value="{{ date }}"
+    >
+
+    <button type="submit" class="ai-btn">
+        🔍 Search
+    </button>
+
+    <a href="/attendance" class="ai-btn secondary">
+        Reset
+    </a>
+
+</form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in records %}
+            <tr>
+                <td class="id-code">{{ r[0] }}</td>
+                <td class="id-code">{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>{{ r[3] }}</td>
+                <td class="id-code">{{ r[4] }}</td>
+                <td>
+                    <span class="table-status {{ 'present' if r[5]|lower == 'present' else 'absent' }}">
+                        {{ r[5] }}
+                    </span>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No attendance records yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

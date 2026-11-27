@@ -1,0 +1,36 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Personal face data
+dataset/
+dataset_backup/
+
+# Database and biometric model
+database/*.db
+trainer/*.yml
+recognized_user.json
+
+# IDE files
+.idea/
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Old backup files
+recognizer_backup.py
+templates/register_backup.html
+
+# Local testing scripts
+check_users.py
+test_faces.py

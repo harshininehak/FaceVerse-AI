@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Face Login | FaceVerse AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .login-card {
+            max-width: 550px;
+            margin: 60px auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        #video {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            background: #111;
+            margin: 15px auto;
+        }
+
+        .camera-buttons button {
+            margin: 8px;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+
+        #status {
+            margin: 15px 0;
+            color: #00f0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-card login-card">
+
+    <h2>🔐 Face Recognition Login</h2>
+
+    <p style="color:#e2e8f0;">
+        Position your face clearly in front of the camera.
+    </p>
+
+    <video id="video" autoplay playsinline muted></video>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <p id="status">Click Start Camera to begin.</p>
+
+    <div class="camera-buttons">
+
+        <button type="button" id="startCamera">
+            Start Camera
+        </button>
+
+        <button type="button" id="captureButton" disabled>
+            Capture Face & Login
+        </button>
+
+    </div>
+
+    <form action="/login" method="POST" id="loginForm">
+
+        <input type="hidden" name="face_image" id="faceImage">
+
+    </form>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</div>
+
+<script>
+
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    const startButton = document.getElementById("startCamera");
+    const captureButton = document.getElementById("captureButton");
+
+    const statusText = document.getElementById("status");
+    const faceImage = document.getElementById("faceImage");
+    const loginForm = document.getElementById("loginForm");
+
+    let cameraStream = null;
+
+    startButton.addEventListener("click", async () => {
+
+        try {
+
+            cameraStream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: "user" },
+                audio: false
+            });
+
+            video.srcObject = cameraStream;
+            await video.play();
+
+            startButton.disabled = true;
+            captureButton.disabled = false;
+
+            statusText.textContent = "Camera ready! Look directly at the camera.";
+
+        } catch (error) {
+
+            statusText.textContent =
+                "Unable to access camera. Please allow camera permission.";
+
+            console.error(error);
+
+        }
+
+    });
+
+
+    captureButton.addEventListener("click", () => {
+
+        if (!cameraStream) {
+            return;
+        }
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        context.drawImage(
+            video,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        faceImage.value = canvas.toDataURL("image/jpeg", 0.9);
+
+        statusText.textContent = "Checking your face...";
+
+        captureButton.disabled = true;
+
+        cameraStream.getTracks().forEach(track => track.stop());
+
+        loginForm.submit();
+
+    });
+
+
+    window.addEventListener("beforeunload", () => {
+
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

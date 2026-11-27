@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | FaceVerse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="form-card">
+    <h2>🔐 Admin Login</h2>
+    <p>Sign in to manage FaceVerse AI</p>
+
+    {% if error %}
+        <p style="color:#ff6b6b;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/admin/login" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Admin Password"
+            required
+        >
+
+        <button type="submit" class="submit-btn">Login</button>
+    </form>
+
+    <a href="/">Back to Home</a>
+</div>
+
+</body>
+</html>

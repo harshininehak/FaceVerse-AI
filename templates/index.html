@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceVerse AI</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="/" class="nav-brand">
+        <svg class="bot-icon" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/>
+            <path d="M20 14h2"/>
+            <path d="M15 13v2"/>
+            <path d="M9 13v2"/>
+        </svg>
+        FaceVerse AI
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/register">Register</a>
+        <a href="/login">Face Login</a>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+
+<div class="hero-split">
+
+    <div class="hero-text">
+        <h1>Intelligent Face<br>Recognition</h1>
+
+        <p class="tagline">
+            Secure, Fast and AI Powered Authentication for the Next Generation.
+        </p>
+
+        <div class="hero-cta-group">
+            <a href="/register" class="btn-solid">Register</a>
+            <a href="/login" class="btn-outline">Face Login</a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+
+        <div class="bot-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#heroBotGradient)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                    <linearGradient id="heroBotGradient" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#00F0FF"/>
+                        <stop offset="100%" stop-color="#A855F7"/>
+                    </linearGradient>
+                </defs>
+
+                <path d="M12 8V4H8"/>
+                <rect width="16" height="12" x="4" y="8" rx="2"/>
+                <path d="M2 14h2"/>
+                <path d="M20 14h2"/>
+                <path d="M15 13v2"/>
+                <path d="M9 13v2"/>
+            </svg>
+        </div>
+
+        <div class="floating-badge badge-1">🔒 Secure Login</div>
+        <div class="floating-badge badge-2">🎯 LBPH Face Recognition</div>
+        <div class="floating-badge badge-3">⚡ AI Powered</div>
+
+    </div>
+
+</div>
+
+<!-- HOW IT WORKS SECTION -->
+
+<section class="how-it-works">
+
+    <h2>How FaceVerse AI Works</h2>
+
+    <p class="section-description">
+        A simple three-step process for face-based attendance management.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">👤</div>
+            <h3>01. Register</h3>
+            <p>Register user details and capture facial images.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>02. Recognise</h3>
+            <p>Identify registered users using OpenCV LBPH recognition.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>03. Track Attendance</h3>
+            <p>Automatically record attendance with date and time.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES SECTION -->
+
+<div class="hero-container" style="padding-top:0;">
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">👁</div>
+            <h3>AI Vision</h3>
+            <p>Real-time face detection</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Secure Access</h3>
+            <p>Smart authentication</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Smart Attendance</h3>
+            <p>Automated tracking</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

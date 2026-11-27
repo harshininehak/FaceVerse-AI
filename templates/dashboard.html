@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | FaceVerse AI</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>
+            <svg class="bot-icon" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8V4H8"/>
+                <rect width="16" height="12" x="4" y="8" rx="2"/>
+                <path d="M2 14h2"/>
+                <path d="M20 14h2"/>
+                <path d="M15 13v2"/>
+                <path d="M9 13v2"/>
+            </svg>
+            FaceVerse AI
+        </h1>
+        <p>Intelligent Face Recognition Dashboard</p>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-icon">👤</div>
+        <h2>Welcome {{ name }}</h2>
+
+        <div class="status">
+            Face Verified Successfully
+        </div>
+
+        <p class="userid">User ID : {{ userid }}</p>
+    </div>
+
+    <div class="quick-actions">
+
+        <a href="/attendance" class="action-card">
+            <div class="feature-icon">📊</div>
+            <h3>Attendance</h3>
+            <p>View Records</p>
+        </a>
+
+        <a href="/admin" class="action-card">
+            <div class="feature-icon">👥</div>
+            <h3>Admin Panel</h3>
+            <p>Manage Users</p>
+        </a>
+
+        <a href="/" class="action-card">
+            <div class="feature-icon">🏠</div>
+            <h3>Home</h3>
+            <p>Main Page</p>
+        </a>
+
+    </div>
+
+    <div class="details-card">
+        <h2>👤 User Information</h2>
+        <div class="details-grid">
+
+            <div>
+                <span><span class="icon">📧</span>Email</span>
+                <p>{{ email }}</p>
+            </div>
+
+            <div>
+                <span><span class="icon">📱</span>Phone</span>
+                <p>{{ phone }}</p>
+            </div>
+
+            <div>
+                <span><span class="icon">🎂</span>Age</span>
+                <p>{{ age }}</p>
+            </div>
+
+            <div>
+                <span><span class="icon">⚧</span>Gender</span>
+                <p>{{ gender }}</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
